@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-      <h1> Twój email to: {{ email }} </h1>
-      <div v-if="email.length < 10">Ale masz krótki adres!</div>
-      <div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
-      <div v-else>Twój adres e-mail jest stanowczo za długi.</div>
-      <input type="text" v-model="email">
-      <button @click="alertMyEmail()">Wyświetl mój e-mail w alercie</button>
+      <h1> Witaj w systemie do zapisów na zajęcia </h1>
+      <div v-if="authenticatedUsername == ''">
+          <div> Zaloguj się e-mailem </div>
+          <input type="email" v-model="email">
+          <button @click="logMeIn()">Wchodzę</button>
+      </div>
+      <div v-else>
+          <h2>Witaj {{email}}!</h2>
+          <a href="" @click="logOut()">Wyloguj</a>
+      </div>
+
+
+
+
   </div>
 
 </template>
@@ -20,13 +28,17 @@ import HelloWorld from './components/HelloWorld.vue'
 export default {
     data() {
         return {
-            email:''
+            email:'',
+            authenticatedUsername:''
         };
     },
 
     methods: {
-        alertMyEmail() {
-            alert(this.email);
+        logMeIn() {
+            this.authenticatedUsername = this.email;
+        },
+        logOut() {
+            this.authenticatedUsername = '';
         }
     }
 }
