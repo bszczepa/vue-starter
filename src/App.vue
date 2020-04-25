@@ -2,36 +2,37 @@
   <div id="app">
       <h1> Witaj w systemie do zapisów na zajęcia </h1>
       <div v-if="authenticatedUsername == ''">
-          <div> Zaloguj się e-mailem </div>
-          <input type="email" v-model="email">
-          <button @click="logMeIn()">Wchodzę</button>
+          <login-form @login="logMeIn($event)"></login-form>
       </div>
       <div v-else>
           <h2>Witaj {{authenticatedUsername}}!</h2>
           <a @click="logOut()">Wyloguj</a>
       </div>
+
+
   </div>
 
 </template>
 
 <script>
 import "milligram";
+import LoginForm from "./components/LoginForm";
 
 //to jest json
 // {atrybut: wartosc, artu 2: wartosc2}
 
 export default {
+    components: {LoginForm},
+
     data() {
         return {
-            email:'',
             authenticatedUsername:''
         };
     },
 
     methods: {
-        logMeIn() {
-            this.authenticatedUsername = this.email;
-            this.email = '';
+        logMeIn(username) {
+            this.authenticatedUsername = username;
         },
         logOut() {
             this.authenticatedUsername = '';
