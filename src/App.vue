@@ -7,20 +7,15 @@
           <button @click="logMeIn()">Wchodzę</button>
       </div>
       <div v-else>
-          <h2>Witaj {{email}}!</h2>
-          <a href="" @click="logOut()">Wyloguj</a>
+          <h2>Witaj {{authenticatedUsername}}!</h2>
+          <a @click="logOut()">Wyloguj</a>
       </div>
-
-
-
-
   </div>
 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import "milligram";
 
 //to jest json
 // {atrybut: wartosc, artu 2: wartosc2}
@@ -36,6 +31,7 @@ export default {
     methods: {
         logMeIn() {
             this.authenticatedUsername = this.email;
+            this.email = '';
         },
         logOut() {
             this.authenticatedUsername = '';
