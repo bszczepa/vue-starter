@@ -5,6 +5,7 @@
       <div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
       <div v-else>Twój adres e-mail jest stanowczo za długi.</div>
       <input type="text" v-model="email">
+      <button @click="alertMyEmail()">Wyświetl mój e-mail w alercie</button>
   </div>
 
 </template>
@@ -17,11 +18,17 @@ import HelloWorld from './components/HelloWorld.vue'
 // {atrybut: wartosc, artu 2: wartosc2}
 
 export default {
-  data() {
-      return {
-          email:''
-      };
-  }
+    data() {
+        return {
+            email:''
+        };
+    },
+
+    methods: {
+        alertMyEmail() {
+            alert(this.email);
+        }
+    }
 }
 </script>
 
