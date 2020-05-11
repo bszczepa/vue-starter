@@ -5,7 +5,9 @@
           <login-form @login="logMeIn($event)"></login-form>
       </div>
       <div v-else>
-          <logout-form :username="authenticatedUsername" @logout="logOut($event)"></logout-form>
+          <logout-form :username="authenticatedUsername"
+                       @logout="logOut($event)">
+          </logout-form>
       </div>
       <div v-show="authenticatedUsername != ''">
           <meeting-page :username="authenticatedUsername"></meeting-page>
@@ -47,4 +49,10 @@ export default {
 </script>
 
 <style>
+    .button {
+        margin: 5px 5px 5px 5px;
+    }
+    .button-outline {
+        margin: 5px 5px 5px 5px;
+    }
 </style>

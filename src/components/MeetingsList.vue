@@ -5,6 +5,8 @@
             <th>Nazwa spotkania</th>
             <th>Opis</th>
             <th>Uczestnicy</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -19,9 +21,21 @@
                 </ul>
             </td>
             <td>
-                <button class="button-outline" @click="signUp(meeting)">Zapisz się</button>
-                <button class="button-outline" @click="signOut(meeting)">Wypisz się</button>
-                <button @click="deleteMeeting(meeting)">Usuń puste spotkanie</button>
+                <button v-if="meeting.participants.indexOf(username) < 0"
+                        class="button-outline"
+                        @click="signUp(meeting)">
+                        Zapisz się
+                </button>
+                <button v-else
+                        class="button-outline"
+                        @click="signOut(meeting)">
+                        Wypisz się
+                </button>
+                <button v-if="meeting.participants.length === 0"
+                        class=""
+                        @click="deleteMeeting(meeting)">
+                        Usuń puste spotkanie
+                </button>
             </td>
             <td></td>
         </tr>
@@ -31,21 +45,22 @@
 
 <script>
     export default {
-        props: ['meetings'],
+        props: ['meetings', 'username'],
 
         methods: {
             signUp(meeting) {
-                this.$emit('signup', this.meeting);
+                this.$emit('signup', meeting);
             },
 
             signOut(meeting) {
-                this.$emit('signout', this.meeting);
+                this.$emit('signout', meeting);
             },
 
             deleteMeeting(meeting) {
-                this.$emit('deletemeeting', this.meeting);
+                this.$emit('deletemeeting', meeting);
             }
 
         }
     }
 </script>
+

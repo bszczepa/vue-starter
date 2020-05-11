@@ -1,10 +1,17 @@
 <template>
     <div>
         <button @click="toggleNewMeetingForm">Dodaj nowe spotkanie</button>
-        <new-meeting-form v-if="this.showNewMeetingForm" @added="addNewMeeting($event)"></new-meeting-form>
+        <new-meeting-form v-if="this.showNewMeetingForm"
+                          @added="addNewMeeting($event)">
+        </new-meeting-form>
         <h5 v-if="this.meetings.length === 0">Brak zaplanowanych spotkań.</h5>
-        <h2 v-else>Zaplanowane zajęcia ({{this.meetings.length}})</h2>
-        <meetings-list :meetings="meetings" @signup="addParticipant($event)" @signout="removeParticipant($event)" @deletemeeting="deleteMeeting($event)" ></meetings-list>
+        <h2 v-else> Zaplanowane zajęcia ({{this.meetings.length}})</h2>
+        <meetings-list :meetings="meetings"
+                       :username="this.username"
+                       @signup="addParticipant($event)"
+                       @signout="removeParticipant($event)"
+                       @deletemeeting="deleteMeeting($event)" >
+        </meetings-list>
     </div>
 </template>
 
