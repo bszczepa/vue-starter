@@ -2,14 +2,14 @@
   <div id="app">
       <h1> Witaj w systemie do zapisów na zajęcia </h1>
       <div v-if="authenticatedUsername == ''">
-          <login-form @login="logMeIn($event)" button-label="Zalooooguj się"></login-form>
+          <login-form @login="logMeIn($event)"></login-form>
       </div>
       <div v-else>
-          <h2>Witaj {{authenticatedUsername}}!</h2>
-          <a @click="logOut()">Wyloguj</a>
+          <logout-form :username="authenticatedUsername" @logout="logOut($event)"></logout-form>
       </div>
 
-
+      <meeting-page>
+      </meeting-page>
   </div>
 
 </template>
@@ -17,12 +17,16 @@
 <script>
 import "milligram";
 import LoginForm from "./components/LoginForm";
+import LogoutForm from "./components/LogoutForm";
+import MeetingPage from "./components/MeetingPage";
+import NewMeetingForm from "./components/NewMeetingForm";
+import MeetingsList from "./components/MeetingsList";
 
 //to jest json
 // {atrybut: wartosc, artu 2: wartosc2}
 
 export default {
-    components: {LoginForm},
+    components: {LoginForm, LogoutForm, MeetingPage, NewMeetingForm, MeetingsList},
 
     data() {
         return {
@@ -34,7 +38,7 @@ export default {
         logMeIn(username) {
             this.authenticatedUsername = username;
         },
-        logOut() {
+        logOut(username) {
             this.authenticatedUsername = '';
         }
     }

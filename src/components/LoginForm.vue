@@ -24,6 +24,11 @@
                 return this.buttonLabel || 'Zaloguj się';
             }
         }
+        // mounted() {
+        //     if (!this.buttonLabel) {
+        //         this.buttonLabel = 'Zaloguj się';
+        //     }
+        // }
     }
 </script>
 <style scoped>
