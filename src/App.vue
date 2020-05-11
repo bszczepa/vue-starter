@@ -7,9 +7,10 @@
       <div v-else>
           <logout-form :username="authenticatedUsername" @logout="logOut($event)"></logout-form>
       </div>
+      <div v-show="authenticatedUsername != ''">
+          <meeting-page :username="authenticatedUsername"></meeting-page>
+      </div>
 
-      <meeting-page>
-      </meeting-page>
   </div>
 
 </template>
@@ -17,20 +18,19 @@
 <script>
 import "milligram";
 import LoginForm from "./components/LoginForm";
-import LogoutForm from "./components/LogoutForm";
+import LogoutForm from "./components/UserState";
 import MeetingPage from "./components/MeetingPage";
-import NewMeetingForm from "./components/NewMeetingForm";
-import MeetingsList from "./components/MeetingsList";
+
 
 //to jest json
 // {atrybut: wartosc, artu 2: wartosc2}
 
 export default {
-    components: {LoginForm, LogoutForm, MeetingPage, NewMeetingForm, MeetingsList},
+    components: {LoginForm, LogoutForm, MeetingPage},
 
     data() {
         return {
-            authenticatedUsername:''
+            authenticatedUsername:'',
         };
     },
 
@@ -40,7 +40,8 @@ export default {
         },
         logOut(username) {
             this.authenticatedUsername = '';
-        }
+        },
+
     }
 }
 </script>
