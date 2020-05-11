@@ -3,8 +3,11 @@
         <div class="column">
             <h2>Witaj {{username}}!</h2>
         </div>
-        <div class="column column-25 float-right">
-            <button class="button-outline" @click="logOut()">Wyloguj</button>
+        <div class="column" style="text-align:right;">
+            <button class="button-outline"
+                    @click="logOut()">
+                    Wyloguj
+            </button>
         </div>
     </div>
 </template>

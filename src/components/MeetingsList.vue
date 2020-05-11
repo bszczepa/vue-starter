@@ -2,11 +2,10 @@
     <table v-if="meetings.length > 0">
         <thead>
         <tr>
-            <th>Nazwa spotkania</th>
-            <th>Opis</th>
-            <th>Uczestnicy</th>
-            <th></th>
-            <th></th>
+            <th style="width: 15%;">Nazwa spotkania</th>
+            <th style="width: 15%;">Opis </th>
+            <th style="width: 15%;">Uczestnicy </th>
+            <th style="width: 55%; "></th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +19,7 @@
                     </li>
                 </ul>
             </td>
-            <td>
+            <td style="text-align: right">
                 <button v-if="meeting.participants.indexOf(username) < 0"
                         class="button-outline"
                         @click="signUp(meeting)">
@@ -37,7 +36,6 @@
                         Usuń puste spotkanie
                 </button>
             </td>
-            <td></td>
         </tr>
         </tbody>
     </table>

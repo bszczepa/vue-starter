@@ -6,6 +6,7 @@
         <label>Opis</label>
         <textarea v-model="newMeeting.description"></textarea>
         <button>Dodaj</button>
+        <h6 v-if="showNameAlert" style="margin-left: 10px; color: #fc0000; display: inline-block ">Spotkanie musi mieć nazwę!</h6>
     </form>
 </template>
 
@@ -13,13 +14,17 @@
     export default {
         data() {
             return {
-                newMeeting: {participants: []}
+                newMeeting: {participants: []},
+                showNameAlert: false
             };
         },
         methods: {
             addNewMeeting() {
-                this.$emit('added', this.newMeeting);
-
+                if (this.newMeeting.name) {
+                    this.$emit('added', this.newMeeting);
+                } else {
+                    this.showNameAlert = true;
+                }
             }
         }
     }
